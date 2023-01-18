@@ -1,7 +1,8 @@
 package com.wincovid.module;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,27 +16,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
-public class AdharCard {
+public class Appointment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int adharId;
+	private int bookingid;
 	
-	@Pattern(regexp = "^[0-9]{12}", message = "{user.invalid.adharNo}")
-	@Column(unique = true)
-	private String adharNo;
+	@Pattern(regexp = "^[0-9]{10}", message = "{user.invalid.contact}")
+	private String mobileno;
 	
-	private String fringerprints;
+	private LocalDate dateofbooking;
 	
-	private String irisscan;
+	private boolean bookingstatus;
 	
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
+	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private IdCard usear;
-
+	private Member member;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private VaccinationCenter VaccinationCenter;
+	
+	//private slot: Slot
 }

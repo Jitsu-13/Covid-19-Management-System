@@ -1,13 +1,13 @@
 package com.wincovid.exception;
 
-public class UsearException extends Exception{
+public class IdCardException extends Exception{
 
-	public UsearException() {
+	public IdCardException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UsearException(String message) {
+	public IdCardException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,13 +1,11 @@
 package com.wincovid.module;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,21 +19,20 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class AdharCard {
+public class VaccineCount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int adharId;
+	private int VaccineCountid;
 	
-	@Pattern(regexp = "^[0-9]{12}", message = "{user.invalid.adharNo}")
-	@Column(unique = true)
-	private String adharNo;
+	private int quantity;
 	
-	private String fringerprints;
+	private double price;
 	
-	private String irisscan;
-	
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
+	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private IdCard usear;
-
+	private VaccineInventory vaccineInventory;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Vaccine vaccine;
 }

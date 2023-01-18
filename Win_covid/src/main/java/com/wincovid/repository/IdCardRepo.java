@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.wincovid.module.Admin;
-import com.wincovid.module.Usear;
+import com.wincovid.module.IdCard;
 @Repository
-public interface UsearRepo extends JpaRepository<Usear, Integer>{
-	public Usear findBymemberUserName(String memberUserName);
+public interface IdCardRepo extends JpaRepository<IdCard, Integer>{
+	public IdCard findBymemberUserName(String memberUserName);
 }

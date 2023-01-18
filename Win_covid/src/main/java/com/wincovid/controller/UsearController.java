@@ -5,11 +5,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,66 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.dto.UsearDto;
+import com.wincovid.dto.IdCardDto;
 import com.wincovid.exception.AdharCardException;
 import com.wincovid.exception.LoginException;
 import com.wincovid.exception.PanCardException;
-import com.wincovid.exception.UsearException;
-import com.wincovid.module.Usear;
-import com.wincovid.service.UsearServices;
+import com.wincovid.exception.IdCardException;
+import com.wincovid.module.IdCard;
+import com.wincovid.service.IdCardService;
 
 @RestController
 @RequestMapping("/usearController")
 public class UsearController {
 	@Autowired
-	private UsearServices usearServices;
+	private IdCardService usearServices;
 	
-	@GetMapping("/usears/{key}")
-	public ResponseEntity<Usear> getUserDetailsHandler(@PathVariable("key") String key) throws UsearException, LoginException {
-
-		Usear existingUser = usearServices.findUsearBykey(key);
-
-		return new ResponseEntity<Usear>(existingUser, HttpStatus.OK);
-
-	}
+	
 	
 	@PostMapping("/usearsignup")
-	public ResponseEntity<Usear> registerUsearHandler(@Valid @RequestBody Usear user) throws UsearException {
+	public ResponseEntity<IdCard> registerUsearHandler(@Valid @RequestBody IdCard user) throws IdCardException {
 
-		Usear savedUser = usearServices.registerUsear(user);
+		IdCard savedUser = usearServices.addIdCard(user);
 
-		return new ResponseEntity<Usear>(savedUser, HttpStatus.OK);
-
-	}
-	
-	@PutMapping("/usears")
-	public ResponseEntity<Usear> updateUsearHandler(@Valid @RequestBody Usear user, @RequestParam("key") String key)
-			throws UsearException, LoginException {
-
-		Usear updatedUser = usearServices.updateUser(user, key);
-
-		return new ResponseEntity<Usear>(updatedUser, HttpStatus.OK);
-
-	}
-    
-	@DeleteMapping("/usears/{key}")
-	public ResponseEntity<String> deleteUsearHandler(@PathVariable("key") String key)
-			throws UsearException, LoginException {
-
-		String updatedUser = usearServices.deleteUsearAccount(key);
-
-		return new ResponseEntity<String>(updatedUser, HttpStatus.OK);
+		return new ResponseEntity<IdCard>(savedUser, HttpStatus.OK);
 
 	}
 	
-	@GetMapping("/usears")
-	public ResponseEntity<Usear> getUsearByIdHandler(@RequestParam("uid") int uid)
-			throws UsearException, LoginException {
-
-		Usear updatedUser = usearServices.findUsearById(uid);
-
-		return new ResponseEntity<Usear>(updatedUser, HttpStatus.OK);
-
-	}
 	
 	@PostMapping("/usearLogin")
 	public ResponseEntity<CurrentUserSession> loginUsearHandler(@Valid @RequestBody UsearDto usr) throws LoginException {
@@ -97,22 +60,22 @@ public class UsearController {
 	}
 	
 	@GetMapping("/usearsByAdhar")
-	public ResponseEntity<Usear> getUsearByAdharHandler(@RequestParam("adharNo") String adharNo)
-			throws UsearException, AdharCardException {
+	public ResponseEntity<IdCardDto> getUsearByAdharHandler(@RequestParam("adharNo") String adharNo)
+			throws IdCardException, AdharCardException {
 
-		Usear getUser = usearServices.findUsearAdharNo(adharNo);
+		IdCardDto getUser = usearServices.findIdCardByAdharNo(adharNo);
 
-		return new ResponseEntity<Usear>(getUser, HttpStatus.OK);
+		return new ResponseEntity<IdCardDto>(getUser, HttpStatus.OK);
 
 	}
 	
 	@GetMapping("/usearsByPan")
-	public ResponseEntity<Usear> getUsearByPanHandler(@RequestParam("panNo") String panNo)
-			throws PanCardException {
+	public ResponseEntity<IdCardDto> getUsearByPanHandler(@RequestParam("panNo") String panNo)
+			throws PanCardException, IdCardException {
 
-		Usear getUser = usearServices.findUsearpanNo(panNo);
+		IdCardDto getUser = usearServices.findIdCardBypanNo(panNo);
 
-		return new ResponseEntity<Usear>(getUser, HttpStatus.OK);
+		return new ResponseEntity<IdCardDto>(getUser, HttpStatus.OK);
 
 	}
 }
