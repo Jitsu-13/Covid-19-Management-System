@@ -1,6 +1,7 @@
 package com.wincovid.module;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +28,10 @@ public class PanCard {
 	private int panId;
 	
 	@Size(min = 10, max = 10, message = "{user.invalid.panNumber}")
+	@Column(unique = true)
 	private String panoNo;
 	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "panCard")
 	@JsonIgnore
-	private Usear usear;
+	private IdCard usear;
 }
