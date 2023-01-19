@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,8 +39,7 @@ private LocalDate  dose2date;
 @JsonIgnore
 private Appointment appointment;
 
-@OneToOne(cascade = CascadeType.ALL)
-@JsonIgnore
+@ManyToOne(cascade = CascadeType.ALL)
 private VaccineRegistration vaccineRegistration;
 
 @OneToOne(cascade = CascadeType.ALL)

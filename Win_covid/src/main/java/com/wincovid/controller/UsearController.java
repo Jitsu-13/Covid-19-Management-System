@@ -40,25 +40,6 @@ public class UsearController {
 
 	}
 	
-	
-	@PostMapping("/usearLogin")
-	public ResponseEntity<CurrentUserSession> loginUsearHandler(@Valid @RequestBody UsearDto usr) throws LoginException {
-
-		CurrentUserSession res = usearServices.loginUsear(usr);
-
-		return new ResponseEntity<CurrentUserSession>(res, HttpStatus.OK);
-
-	}
-    
-	@PostMapping("/usearLogout/{key}")
-	public ResponseEntity<String> logoutAdminHandler(@PathVariable("key") String key) throws LoginException {
-
-		String res = usearServices.logoutUsear(key);
-
-		return new ResponseEntity<String>(res, HttpStatus.OK);
-
-	}
-	
 	@GetMapping("/usearsByAdhar")
 	public ResponseEntity<IdCardDto> getUsearByAdharHandler(@RequestParam("adharNo") String adharNo)
 			throws IdCardException, AdharCardException {

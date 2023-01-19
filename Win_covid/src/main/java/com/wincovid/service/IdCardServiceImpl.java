@@ -93,48 +93,6 @@ public class IdCardServiceImpl implements IdCardService{
 			return uddto;
 		}
 	}
-
-	@Override
-	public CurrentUserSession loginUsear(UsearDto usear) throws LoginException {
-		IdCard existingUser = idCardRepo.findBymemberUserName(usear.getUsername());
-
-		if (existingUser == null) {
-			throw new LoginException("Invalid credentials User does not exist with this username -" + usear.getUsername());	
-		}
-		
-
-		Optional<CurrentUserSession> validCustomerSessionOpt = cuRepo.findById(existingUser.getId());
-
-		if (validCustomerSessionOpt.isPresent() && existingUser.getMemberPassword().equals(usear.getUserPassword())) {
-			cuRepo.delete(validCustomerSessionOpt.get());
-		}
-
-		if (existingUser.getMemberPassword().equals(usear.getUserPassword())) {
-
-			String key = RandomString.make(6);
-
-			Boolean isAdmin = false;
-
-			CurrentUserSession currentUserSession = new CurrentUserSession(existingUser.getId(), key, isAdmin,
-					LocalDateTime.now());
-
-			cuRepo.save(currentUserSession);
-
-			return currentUserSession;
-		} else {
-			throw new LoginException("Please Enter a valid password");
-		}
-	}
-
-	@Override
-	public String logoutUsear(String key) throws LoginException {
-		CurrentUserSession loggedInUser = cuRepo.findByUuid(key);
-
-		if (loggedInUser == null) {
-			throw new LoginException("Please provide a valid key to logout admin");
-		}
-		cuRepo.delete(loggedInUser);
-		return "Logged Out !";
-	}
+	
 	}
 	
