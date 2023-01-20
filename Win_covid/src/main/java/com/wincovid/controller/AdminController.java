@@ -2,6 +2,11 @@ package com.wincovid.controller;
 
 import javax.validation.Valid;
 
+import com.wincovid.exception.VaccinationCenterException;
+import com.wincovid.exception.VaccineException;
+import com.wincovid.module.VaccinationCenter;
+import com.wincovid.module.Vaccine;
+import com.wincovid.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +27,7 @@ import com.wincovid.exception.LoginException;
 import com.wincovid.module.Admin;
 import com.wincovid.service.AdminServices;
 
+import java.util.List;
 
 
 @RestController
@@ -29,6 +35,8 @@ import com.wincovid.service.AdminServices;
 public class AdminController {
 	@Autowired
 	private AdminServices adminService;
+	@Autowired
+	private VaccineService vaccineService;
 	
 	@GetMapping("/admins/{key}")
 	public ResponseEntity<Admin> getUserDetailsHandler(@PathVariable("key") String key) throws AdminException, LoginException {
