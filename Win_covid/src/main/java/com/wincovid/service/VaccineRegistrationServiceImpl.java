@@ -1,6 +1,7 @@
 package com.wincovid.service;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -40,6 +41,7 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 
 	@Override
 	public List<Member> getAllMemberByMobileNo(String panoNo) throws VaccineRegistrationException {
+
 		VaccineRegistration vaccineRegistration = vaccineRegistrationRepo.findBymobileno(panoNo);
 		if(vaccineRegistration == null) {
 			throw new VaccineRegistrationException("No vaccine registration found with this mobile number - "+panoNo);
