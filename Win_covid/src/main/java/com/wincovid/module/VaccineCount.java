@@ -30,9 +30,5 @@ public class VaccineCount {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private VaccineInventory vaccineInventory;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Vaccine vaccine;
 }

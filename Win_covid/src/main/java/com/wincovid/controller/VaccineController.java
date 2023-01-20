@@ -47,7 +47,7 @@ public class VaccineController {
     }
     
     @GetMapping("/allVaccines")
-    public ResponseEntity<List<Vaccine>> getVaccineById() throws VaccineException {
+    public ResponseEntity<List<Vaccine>> getVaccine() throws VaccineException {
     	List<Vaccine> getapp = vaccineService.getAllVaccine();
         return new ResponseEntity<List<Vaccine>>(getapp, HttpStatus.FOUND);
     }
