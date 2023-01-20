@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import lombok.AllArgsConstructor;
@@ -39,6 +42,7 @@ public class VaccineRegistration {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Member> member = new ArrayList<Member>();
+
 	
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",message = "{user.invalid.password}")
 	private String Password;

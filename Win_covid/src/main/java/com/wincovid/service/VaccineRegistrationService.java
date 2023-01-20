@@ -1,7 +1,8 @@
 package com.wincovid.service;
 
+
 import java.util.List;
-import java.util.Set;
+
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.dto.UsearDto;
@@ -13,7 +14,9 @@ import com.wincovid.module.VaccineRegistration;
 public interface VaccineRegistrationService {
     public VaccineRegistration getVaccineRegistrationByMobileNo(String panoNo) throws VaccineRegistrationException;
     
+
     public List<Member> getAllMemberByMobileNo(String panoNo) throws VaccineRegistrationException;
+
 
     public VaccineRegistration addVaccineRegistration(VaccineRegistration vaccineRegistration) throws VaccineRegistrationException;
 

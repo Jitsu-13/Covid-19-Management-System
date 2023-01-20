@@ -35,6 +35,7 @@ private LocalDate  dose1date=null;
 
 private LocalDate  dose2date=null;
 
+
 @OneToOne(cascade = CascadeType.ALL)
 @JsonIgnore
 private Appointment appointment;
@@ -42,6 +43,8 @@ private Appointment appointment;
 @OneToOne(cascade = CascadeType.ALL)
 @JsonIgnore
 private Vaccine vaccine;
+
+
 
 @OneToOne(cascade = CascadeType.ALL)
 private IdCard idCard;
