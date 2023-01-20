@@ -7,5 +7,5 @@ import com.wincovid.module.Admin;
 import com.wincovid.module.IdCard;
 @Repository
 public interface IdCardRepo extends JpaRepository<IdCard, Integer>{
-	public IdCard findBymemberUserName(String memberUserName);
+//	public IdCard findBymemberUserName(String memberUserName);
 }

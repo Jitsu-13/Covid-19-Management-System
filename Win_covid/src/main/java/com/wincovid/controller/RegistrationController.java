@@ -1,6 +1,8 @@
 package com.wincovid.controller;
 
-import java.util.Set;
+
+import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -70,11 +72,11 @@ public class RegistrationController {
 	}
 	
 	@GetMapping("/registrations")
-	public ResponseEntity<Set<Member>> getAllMemberByMobileNoIdHandler(@RequestParam("mobileno") String mobileno) throws VaccineRegistrationException{
+	public ResponseEntity<List<Member>> getAllMemberByMobileNoIdHandler(@RequestParam("mobileno") String mobileno) throws VaccineRegistrationException{
 
-		Set<Member> allmembers = vaccineRegistrationService.getAllMemberByMobileNo(mobileno);
+		List<Member> allmembers = vaccineRegistrationService.getAllMemberByMobileNo(mobileno);
 
-		return new ResponseEntity<Set<Member>>(allmembers, HttpStatus.OK);
+		return new ResponseEntity<List<Member>>(allmembers, HttpStatus.OK);
 
 	}
 	

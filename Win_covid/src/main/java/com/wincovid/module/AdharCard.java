@@ -19,7 +19,6 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
 public class AdharCard {
 	@Id
@@ -36,6 +35,6 @@ public class AdharCard {
 	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
 	@JsonIgnore
-	private IdCard usear;
+	private IdCard idCard;
 
 }

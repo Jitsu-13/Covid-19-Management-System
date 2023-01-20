@@ -1,8 +1,10 @@
 package com.wincovid.module;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,8 +41,8 @@ public class VaccineRegistration {
 	private LocalDate  dateofregistration = LocalDate.now();
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Set<Member> member = new HashSet<>();
+	private List<Member> member = new ArrayList<Member>();
+
 	
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",message = "{user.invalid.password}")
 	private String Password;

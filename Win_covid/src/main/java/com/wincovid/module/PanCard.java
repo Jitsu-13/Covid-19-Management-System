@@ -20,7 +20,6 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
 public class PanCard {
 	@Id
@@ -33,5 +32,5 @@ public class PanCard {
 	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "panCard")
 	@JsonIgnore
-	private IdCard usear;
+	private IdCard idCard;
 }

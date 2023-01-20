@@ -27,26 +27,23 @@ public class Member {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int memberId;
 
-private boolean dose1status;
+private boolean dose1status=false;
 
-private boolean dose2status;
+private boolean dose2status=false;
 
-private LocalDate  dose1date;
+private LocalDate  dose1date=null;
 
-private LocalDate  dose2date;
+private LocalDate  dose2date=null;
 
-@OneToOne(cascade = CascadeType.ALL)
-@JsonIgnore
-private Appointment appointment;
 
-@ManyToOne(cascade = CascadeType.ALL)
-private VaccineRegistration vaccineRegistration;
+//@OneToOne(cascade = CascadeType.ALL)
+//@JsonIgnore
+//private Appointment appointment;
+//
+//@OneToOne(cascade = CascadeType.ALL)
+//private Vaccine vaccine;
 
-@OneToOne(cascade = CascadeType.ALL)
-@JsonIgnore
-private Vaccine vaccine;
 
 @OneToOne(cascade = CascadeType.ALL)
-@JsonIgnore
 private IdCard idCard;
 }

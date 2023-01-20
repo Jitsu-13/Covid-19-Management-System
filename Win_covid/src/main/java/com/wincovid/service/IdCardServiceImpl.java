@@ -39,40 +39,43 @@ public class IdCardServiceImpl implements IdCardService{
 
 	@Override
 	public IdCard addIdCard(IdCard idCard) throws IdCardException {
-		IdCard existingUserName = idCardRepo.findBymemberUserName(idCard.getMemberUserName());
-
-		if (existingUserName != null) {
-			throw new IdCardException("Usear already exist with this admin user name -  " + idCard.getMemberUserName());
-		}else {
-			return idCardRepo.save(idCard);
-		}
+//		IdCard existingUserName = idCardRepo.findBymemberUserName(idCard.getMemberUserName());
+//
+//		if (existingUserName != null) {
+//			throw new IdCardException("Usear already exist with this admin user name -  " + idCard.getMemberUserName());
+//		}else {
+//			return idCardRepo.save(idCard);
+//		}
+		return null;
 	}
 
 	@Override
 	public IdCardDto findIdCardByAdharNo(String adharNo) throws IdCardException, AdharCardException {
-		AdharCard padrcad = adharCardRepo.findByadharNo(adharNo);
-		if (padrcad == null) {
-			throw new AdharCardException("No user found with this aadhaar card number ");
-		}else {
-			IdCard existingUsear =  padrcad.getUsear();
-			
-			IdCardDto uddto = new IdCardDto();
-			uddto.setName(existingUsear.getName());
-			uddto.setDateOfBirth(existingUsear.getDateOfBirth());
-			uddto.setGender(existingUsear.getGender());
-			uddto.setAddress(existingUsear.getAddress());
-			uddto.setCity(existingUsear.getCity());
-			uddto.setState(existingUsear.getState());
-			uddto.setPanCard(existingUsear.getPanCard());
-			uddto.setAdharCard(existingUsear.getAdharCard());
-			
-			
-			return uddto;
-	}
+//		AdharCard padrcad = adharCardRepo.findByadharNo(adharNo);
+//		if (padrcad == null) {
+//			throw new AdharCardException("No user found with this aadhaar card number ");
+//		}else {
+//			IdCard existingUsear =  padrcad.getUsear();
+//			
+//			IdCardDto uddto = new IdCardDto();
+//			uddto.setName(existingUsear.getName());
+//			uddto.setDateOfBirth(existingUsear.getDateOfBirth());
+//			uddto.setGender(existingUsear.getGender());
+//			uddto.setAddress(existingUsear.getAddress());
+//			uddto.setCity(existingUsear.getCity());
+//			uddto.setState(existingUsear.getState());
+//			uddto.setPanCard(existingUsear.getPanCard());
+//			uddto.setAdharCard(existingUsear.getAdharCard());
+//			
+//			
+//			return uddto;
+//	}
+		return null;
 	}
 
 	@Override
 	public IdCardDto findIdCardBypanNo(String panNo) throws IdCardException, PanCardException {
+
 		PanCard pacrdno = panCardRepo.findBypanoNo(panNo);
 		if (pacrdno == null) {
 			throw new PanCardException("No user found with this pan card number ");
