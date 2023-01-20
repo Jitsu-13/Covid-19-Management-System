@@ -28,12 +28,11 @@ public class VaccineInventory {
 	
 	private LocalDate date;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private VaccinationCenter VaccinationCenter;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore
+//	private VaccinationCenter VaccinationCenter;
+//	
+	@OneToOne
 	private VaccineCount vaccineCount;
 	
 	
