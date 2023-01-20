@@ -1,11 +1,6 @@
 package com.wincovid.module;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +20,5 @@ public class Vaccine {
 	private String description;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
 	private VaccineCount vaccineCount;
 }
