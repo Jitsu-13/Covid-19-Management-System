@@ -49,5 +49,9 @@ public class IdCard {
 	private PanCard panCard;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private AdharCard adharCard;	
+	private AdharCard adharCard;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Member member;
 }

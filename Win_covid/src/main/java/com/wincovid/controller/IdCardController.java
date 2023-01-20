@@ -18,45 +18,47 @@ import com.wincovid.dto.UsearDto;
 import com.wincovid.dto.IdCardDto;
 import com.wincovid.exception.AdharCardException;
 import com.wincovid.exception.LoginException;
+import com.wincovid.exception.MemberException;
 import com.wincovid.exception.PanCardException;
+import com.wincovid.exception.VaccineRegistrationException;
 import com.wincovid.exception.IdCardException;
 import com.wincovid.module.IdCard;
 import com.wincovid.service.IdCardService;
 
 @RestController
 @RequestMapping("/usearController")
-public class UsearController {
+public class IdCardController {
 	@Autowired
 	private IdCardService usearServices;
 	
 	
 	
-	@PostMapping("/usearsignup")
-	public ResponseEntity<IdCard> registerUsearHandler(@Valid @RequestBody IdCard user) throws IdCardException {
+	@PostMapping("/usearsignup/{key}")
+	public ResponseEntity<IdCard> registerIdCardHandler(@Valid @RequestBody IdCard user,@PathVariable("key") String key) throws IdCardException, LoginException, MemberException, VaccineRegistrationException {
 
-		IdCard savedUser = usearServices.addIdCard(user);
+		IdCard savedUser = usearServices.addIdCard(key, user);
 
 		return new ResponseEntity<IdCard>(savedUser, HttpStatus.OK);
 
 	}
 	
 	@GetMapping("/usearsByAdhar")
-	public ResponseEntity<IdCardDto> getUsearByAdharHandler(@RequestParam("adharNo") String adharNo)
+	public ResponseEntity<IdCard> getIdCardByAdharHandler(@RequestParam("adharNo") String adharNo)
 			throws IdCardException, AdharCardException {
 
-		IdCardDto getUser = usearServices.findIdCardByAdharNo(adharNo);
+		IdCard getUser = usearServices.findIdCardByAdharNo(adharNo);
 
-		return new ResponseEntity<IdCardDto>(getUser, HttpStatus.OK);
+		return new ResponseEntity<IdCard>(getUser, HttpStatus.OK);
 
 	}
 	
 	@GetMapping("/usearsByPan")
-	public ResponseEntity<IdCardDto> getUsearByPanHandler(@RequestParam("panNo") String panNo)
+	public ResponseEntity<IdCard> getIdCardByPanHandler(@RequestParam("panNo") String panNo)
 			throws PanCardException, IdCardException {
 
-		IdCardDto getUser = usearServices.findIdCardBypanNo(panNo);
+		IdCard getUser = usearServices.findIdCardBypanNo(panNo);
 
-		return new ResponseEntity<IdCardDto>(getUser, HttpStatus.OK);
+		return new ResponseEntity<IdCard>(getUser, HttpStatus.OK);
 
 	}
 }
