@@ -1,10 +1,8 @@
 package com.wincovid.controller;
 
-import com.wincovid.exception.IdCardException;
+
 import com.wincovid.exception.LoginException;
-import com.wincovid.exception.MemberException;
 import com.wincovid.exception.VaccineException;
-import com.wincovid.module.Member;
 import com.wincovid.module.Vaccine;
 import com.wincovid.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
