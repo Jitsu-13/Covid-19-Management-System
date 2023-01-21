@@ -38,7 +38,6 @@
 - User Registration
 - Add Multiple Member
 - View Dose Status Of Member
-- Search User by Aadhar, Pan Details
 - View Centers 
 - View  Slots
 - Book Appointment For Particular Date 
