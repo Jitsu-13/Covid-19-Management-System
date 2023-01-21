@@ -40,7 +40,7 @@ public class VaccinationCenter {
 	@Size(min = 6, message = "{VaccinationCenter.invalid.pincode}")
 	private String pincode;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	@JsonIgnore
 	private List<Appointment> appointments;
 	
