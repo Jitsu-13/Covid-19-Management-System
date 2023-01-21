@@ -16,8 +16,8 @@ public interface VaccineInventoryRepo extends JpaRepository<VaccineInventory, In
 	
 	 public List<VaccineInventory> findByDate(LocalDate date);
 	 
-	 @Query("from VaccineInventory where vaccineCount.vaccine.vaccninName=:vna")
-	// @Query("from vaccineInventory Inner Join Vaccine ON VaccineInventory.vaccineInventoryId=:Vaccine.vaccineld WHERE vaccineName=:vna")
-	 public List<VaccineInventory> findByVaccineName(@Param("vna") String vna);
+//	 @Query("from VaccineInventory where vaccineCount.vaccine.vaccninName=:vna")
+//	// @Query("from vaccineInventory Inner Join Vaccine ON VaccineInventory.vaccineInventoryId=:Vaccine.vaccineld WHERE vaccineName=:vna")
+//	 public List<VaccineInventory> findByVaccineName(@Param("vna") String vna);
 
 }

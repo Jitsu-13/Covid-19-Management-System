@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.exception.LoginException;
+import com.wincovid.exception.VaccinationCenterException;
 import com.wincovid.exception.VaccineInventoryException;
+import com.wincovid.module.VaccinationCenter;
 import com.wincovid.module.Vaccine;
 import com.wincovid.module.VaccineCount;
 import com.wincovid.module.VaccineInventory;
 import com.wincovid.repository.CurrentUserSessionRepo;
+import com.wincovid.repository.VaccinationCenterRepo;
 import com.wincovid.repository.VaccineCountRepo;
 import com.wincovid.repository.VaccineInventoryRepo;
 import com.wincovid.repository.VaccineRepo;
@@ -32,19 +35,24 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService {
     
     @Autowired
     private VaccineCountRepo vaccineCountRepo;
+    
+    @Autowired
+	private VaccinationCenterRepo vaccinationCenterRepo;
 
 	@Override
-	public VaccineInventory addVaccineCount(String key, VaccineInventory inv,int vaccineCountID)
+	public VaccineInventory addVaccineCount(String key, int vaccineInventoryId,int vaccineCountID)
 			throws VaccineInventoryException, LoginException {
 		CurrentUserSession loggedInUser = currentUserSessionRepo.findByUuid(key);
 		if(loggedInUser!=null) {
 		if(loggedInUser.getAdmin()==true) {
 			Optional<VaccineCount> vc = vaccineCountRepo.findById(vaccineCountID);
-			if(vc.isPresent()) {
+			Optional<VaccineInventory> vi = vacInvRepo.findById(vaccineInventoryId);
+			if(vc.isPresent()&&vi.isPresent()) {
 				VaccineCount vaccineCount =vc.get();
-				inv.setVaccineCount(vaccineCount);
-				vacInvRepo.save(inv);
-				return inv;
+				VaccineInventory vaccineInventory =vi.get();
+				vaccineInventory.getVaccineCount().add(vaccineCount);
+				vacInvRepo.save(vaccineInventory);
+				return vaccineInventory;
 			}else {
 				throw new VaccineInventoryException("No inventory found with this inventory ID ");
 			}
@@ -58,16 +66,14 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService {
 	}
 
 	@Override
-	public VaccineInventory updateVaccinelnventory(String key, VaccineInventory inv,int PreviousStock) throws LoginException, VaccineInventoryException {
+	public VaccineInventory updateVaccinelnventory(String key, int vaccineInventoryId,LocalDate date) throws LoginException, VaccineInventoryException {
 		CurrentUserSession loggedInUser = currentUserSessionRepo.findByUuid(key);
 		if(loggedInUser!=null) {
 		if(loggedInUser.getAdmin()==true) {
-			Optional<VaccineInventory> vv = vacInvRepo.findById(inv.getVaccineInventoryId());
+			Optional<VaccineInventory> vv = vacInvRepo.findById(vaccineInventoryId);
 			if(vv.isPresent()) {
 				VaccineInventory vaccineInventory = vv.get();
-				VaccineCount vc = vaccineInventory.getVaccineCount();
-				vaccineInventory.setDate(inv.getDate());
-				vc.setQuantity(vc.getQuantity()+PreviousStock);
+				vaccineInventory.setDate(date);
 				vacInvRepo.save(vaccineInventory);
 				return vaccineInventory;
 			}else {
@@ -105,9 +111,20 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService {
 	}
 
 	@Override
-	public VaccineInventory getVaccineInventoryByCenter(int centerId) throws VaccineInventoryException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VaccineInventory> getVaccineInventoryByCenter(int vaccinationCentercode) throws VaccineInventoryException,VaccinationCenterException {
+		Optional<VaccinationCenter> vv = vaccinationCenterRepo.findById(vaccinationCentercode);
+		if(vv.isEmpty()) {
+			throw new VaccinationCenterException("Vaccination center Not found  ");
+		}else {
+			VaccinationCenter toget = vv.get();
+			List<VaccineInventory> vil = toget.getVaccineInventory();
+			if(vil.isEmpty()) {
+				throw new VaccineInventoryException("No inventory found for this vaccination center ");
+			}else {
+				return vil;
+			}
+			
+		}
 	}
 
 	@Override
@@ -123,12 +140,13 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService {
 
 	@Override
 	public List<VaccineInventory> getVaccinelnventoryByVaccineName(String vaccineName) throws VaccineInventoryException {
-       List<VaccineInventory> vin = vacInvRepo.findByVaccineName(vaccineName);
-		if(vin.isEmpty()) {
-			throw new VaccineInventoryException("No inventory found for this vaccine ");
-		}else {
-			return vin;
-		}
+//       List<VaccineInventory> vin = vacInvRepo.findByVaccineName(vaccineName);
+//		if(vin.isEmpty()) {
+//			throw new VaccineInventoryException("No inventory found for this vaccine ");
+//		}else {
+//			return vin;
+//		}
+		return null;
 	}
 
 	

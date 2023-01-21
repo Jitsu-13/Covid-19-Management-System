@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wincovid.exception.LoginException;
+import com.wincovid.exception.VaccinationCenterException;
 import com.wincovid.exception.VaccineException;
 import com.wincovid.exception.VaccineInventoryException;
 import com.wincovid.module.Vaccine;
@@ -31,33 +32,39 @@ public class VaccineInventoryController {
 	@Autowired
 	private VaccineInventoryService vaccInvService;
 	
-	@PostMapping("/addinventory")
-    public ResponseEntity<VaccineInventory> addVaccineInventory(@RequestBody VaccineInventory vaccineInventory, @RequestParam("key") String key, @RequestParam("VaccineCountid") int VaccineCountid) throws VaccineInventoryException, LoginException {
-		VaccineInventory saved = vaccInvService.addVaccineCount(key, vaccineInventory, VaccineCountid);
+	@PostMapping("/addVaccineCount")
+    public ResponseEntity<VaccineInventory> addVaccineCountHandler(@RequestParam("vaccineInventoryId")  int vaccineInventoryId, @RequestParam("key") String key, @RequestParam("VaccineCountid") int VaccineCountid) throws VaccineInventoryException, LoginException {
+		VaccineInventory saved = vaccInvService.addVaccineCount(key, vaccineInventoryId, VaccineCountid);
         return new ResponseEntity<VaccineInventory>(saved, HttpStatus.CREATED);
     }
 	
-	@PutMapping("/update")
-    public ResponseEntity<VaccineInventory> updateVaccineInventory(@RequestBody VaccineInventory vaccineInventory, @RequestParam("key") String key, @RequestParam("PreviousStock") int PreviousStock) throws VaccineException,LoginException, VaccineInventoryException{
-		VaccineInventory getCus = vaccInvService.updateVaccinelnventory(key, vaccineInventory, PreviousStock);
+	@PutMapping("/updateVaccineInventory")
+    public ResponseEntity<VaccineInventory> updateVaccineInventoryHandler(@RequestParam("vaccineInventoryId") int vaccineInventoryId, @RequestParam("key") String key, @RequestParam("date") String date) throws VaccineException,LoginException, VaccineInventoryException{
+		VaccineInventory getCus = vaccInvService.updateVaccinelnventory(key, vaccineInventoryId, LocalDate.parse(date));
         return new ResponseEntity<VaccineInventory>(getCus, HttpStatus.OK);
     }
 	
-	@DeleteMapping("/delete")
-    public ResponseEntity<VaccineInventory> deleteAppointment(@RequestParam("vaccineInventoryId") int vaccineInventoryId, @RequestParam("key") String key) throws LoginException, VaccineInventoryException {
+	@DeleteMapping("/deleteVaccineInventory")
+    public ResponseEntity<VaccineInventory> deleteVaccineInventoryHandler(@RequestParam("vaccineInventoryId") int vaccineInventoryId, @RequestParam("key") String key) throws LoginException, VaccineInventoryException {
 		VaccineInventory getCus = vaccInvService.deleteVaccineInventory(key, vaccineInventoryId);
         return new ResponseEntity<VaccineInventory>(getCus, HttpStatus.OK);
     }
 	
     @GetMapping("/allVaccineInventoryByDate")
-    public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByDate(@RequestParam("date") String date) throws VaccineInventoryException {
+    public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByDateHandler(@RequestParam("date") String date) throws VaccineInventoryException {
     	List<VaccineInventory> getapp = vaccInvService.getVaccineInventoryByDate(LocalDate.parse(date));
         return new ResponseEntity<List<VaccineInventory>>(getapp, HttpStatus.OK);
     }
     
-    @GetMapping("/allVaccineInventory")
-    public ResponseEntity<List<VaccineInventory>> getVaccinelnventoryByVaccineName(@RequestParam("vaccineName") String vaccineName) throws VaccineInventoryException {
+    @GetMapping("/allVaccineInventoryByVaccineName")
+    public ResponseEntity<List<VaccineInventory>> getVaccinelnventoryByVaccineNameHandler(@RequestParam("vaccineName") String vaccineName) throws VaccineInventoryException {
     	List<VaccineInventory> getapp = vaccInvService.getVaccinelnventoryByVaccineName(vaccineName);
+        return new ResponseEntity<List<VaccineInventory>>(getapp, HttpStatus.FOUND);
+    }
+    
+    @GetMapping("/allVaccineInventoryByCenter")
+    public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByCenterHandler(@RequestParam("vaccinationCentercode") int vaccinationCentercode) throws VaccineInventoryException, VaccinationCenterException{
+    	List<VaccineInventory> getapp = vaccInvService.getVaccineInventoryByCenter(vaccinationCentercode);
         return new ResponseEntity<List<VaccineInventory>>(getapp, HttpStatus.FOUND);
     }
 	
