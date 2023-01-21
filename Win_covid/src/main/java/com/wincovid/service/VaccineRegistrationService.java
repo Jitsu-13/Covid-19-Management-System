@@ -6,14 +6,15 @@ import java.util.List;
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.dto.UsearDto;
+import com.wincovid.dto.VaccineRegistrationDto;
 import com.wincovid.exception.LoginException;
 import com.wincovid.exception.VaccineRegistrationException;
 import com.wincovid.module.Member;
 import com.wincovid.module.VaccineRegistration;
 
 public interface VaccineRegistrationService {
-    public VaccineRegistration getVaccineRegistrationByMobileNo(String panoNo) throws VaccineRegistrationException;
-    
+    public VaccineRegistrationDto getVaccineRegistrationByMobileNo(String mobileNo) throws VaccineRegistrationException;
+
 
     public List<Member> getAllMemberByMobileNo(String panoNo) throws VaccineRegistrationException;
 

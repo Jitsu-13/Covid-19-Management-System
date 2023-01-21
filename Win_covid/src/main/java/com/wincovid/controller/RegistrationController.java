@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.dto.UsearDto;
+import com.wincovid.dto.VaccineRegistrationDto;
 import com.wincovid.exception.IdCardException;
 import com.wincovid.exception.LoginException;
 import com.wincovid.exception.VaccineRegistrationException;
@@ -63,11 +64,11 @@ public class RegistrationController {
 	}
 	
 	@GetMapping("/registration")
-	public ResponseEntity<VaccineRegistration> getRegistrationByMobileNoIdHandler(@RequestParam("mobileno") String mobileno) throws VaccineRegistrationException{
+	public ResponseEntity<VaccineRegistrationDto> getRegistrationByMobileNoIdHandler(@RequestParam("mobileno") String mobileno) throws VaccineRegistrationException{
 
-		VaccineRegistration updatedUser = vaccineRegistrationService.getVaccineRegistrationByMobileNo(mobileno);
+		VaccineRegistrationDto  updatedUser = vaccineRegistrationService.getVaccineRegistrationByMobileNo(mobileno);
 
-		return new ResponseEntity<VaccineRegistration>(updatedUser, HttpStatus.OK);
+		return new ResponseEntity<VaccineRegistrationDto>(updatedUser, HttpStatus.OK);
 
 	}
 	
