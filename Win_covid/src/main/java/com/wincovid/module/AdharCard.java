@@ -1,16 +1,13 @@
 package com.wincovid.module;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.wincovid.enums.Fingerprint;
+import com.wincovid.enums.Iris;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +25,14 @@ public class AdharCard {
 	@Pattern(regexp = "^[0-9]{12}", message = "{user.invalid.adharNo}")
 	@Column(unique = true)
 	private String adharNo;
-	
-	private String fringerprints;
-	
-	private String irisscan;
+
+//	@NotNull(message="FingerPrints can't be null")
+	@Enumerated(EnumType.STRING)
+	private Fingerprint fringerprints;
+
+//	@NotNull(message="Iris can't be null")
+	@Enumerated(EnumType.STRING)
+	private Iris irisscan;
 	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
 	@JsonIgnore
