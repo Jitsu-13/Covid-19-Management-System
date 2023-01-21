@@ -1,8 +1,10 @@
 # Win-Covid Covid-19 Vaccination Management System
 
 <p align="center">
-  <img width="250" height="200" src="https://github.com/Jitsu-13/piquant-mother-8005/blob/main/Win_covid%20Logo.png">
+  <img width="250" height="200" src="https://user-images.githubusercontent.com/107523890/213869160-f890c96d-3c6b-4a72-8f03-3b85ca930683.png">
 </p>
+<!-- ![Win_covid Logo](https://user-images.githubusercontent.com/107523890/213869160-f890c96d-3c6b-4a72-8f03-3b85ca930683.png) -->
+
 
 > We have developed this REST API for an Online Covid-19 Vaccination Management System. This API performs all the fundamental CRUD operations of any Real life Covid-19 Vaccination Management platform with user validation at every step.
 > 
@@ -78,5 +80,5 @@
 
 
 
-![Yadav Sujit Vijayee](https://user-images.githubusercontent.com/107523890/213869032-2169b39d-234f-446e-9f58-97361ee9c8c3.jpg)
+
 
