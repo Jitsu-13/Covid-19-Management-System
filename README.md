@@ -72,7 +72,8 @@
 
 # Overview of Our work 
 ## **ER Diagram**
-![Screenshot (204)](https://user-images.githubusercontent.com/103619788/213904817-f1e82b57-57ce-43cf-b99c-1b8311241774.png)
+![ER diagram](https://user-images.githubusercontent.com/103619788/213905352-15c065ed-ba28-4082-8a55-22cebea4b8d2.png)
+
 
 
 
