@@ -28,7 +28,6 @@
 - Vaccine Registration Module
 - Vaccine Module
 - Vaccine Inventory Module
-- Search Module
 - Book Appointment Module
 
 # Features 
@@ -63,7 +62,7 @@
 - Swagger
 - Maven
 - Git & GitHub
-- Eclipse
+- Spring tool suite
 - Intellij
 
 # Lessons Learned
@@ -73,11 +72,7 @@
 
 # Overview of Our work 
 ## **ER Diagram**
-<p align="center">
-  <img width="1000" height="450" src="https://user-images.githubusercontent.com/107523890/213753419-f8b739d3-224f-4a47-8b98-f0980d7a6992.png">
-</p>
-
-
+![Screenshot (204)](https://user-images.githubusercontent.com/103619788/213904817-f1e82b57-57ce-43cf-b99c-1b8311241774.png)
 
 
 
