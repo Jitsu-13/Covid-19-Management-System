@@ -1,4 +1,4 @@
-# Win-Covid Covid-19 Vaccination Management System
+# Win-Covid Covid-19 Vaccination Management Syste
 
 <p align="center">
   <img width="250" height="200" src="https://user-images.githubusercontent.com/107523890/213869160-f890c96d-3c6b-4a72-8f03-3b85ca930683.png">
