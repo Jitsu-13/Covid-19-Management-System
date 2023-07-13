@@ -28,7 +28,6 @@
 - Vaccine Registration Module
 - Vaccine Module
 - Vaccine Inventory Module
-- Search Module
 - Book Appointment Module
 
 # Features 
@@ -38,7 +37,6 @@
 - User Registration
 - Add Multiple Member
 - View Dose Status Of Member
-- Search User by Aadhar, Pan Details
 - View Centers 
 - View  Slots
 - Book Appointment For Particular Date 
@@ -64,7 +62,7 @@
 - Swagger
 - Maven
 - Git & GitHub
-- Eclipse
+- Spring tool suite
 - Intellij
 
 # Lessons Learned
@@ -74,10 +72,7 @@
 
 # Overview of Our work 
 ## **ER Diagram**
-<p align="center">
-  <img width="1000" height="450" src="https://user-images.githubusercontent.com/107523890/213753419-f8b739d3-224f-4a47-8b98-f0980d7a6992.png">
-</p>
-
+![ER diagram](https://user-images.githubusercontent.com/103619788/213905352-15c065ed-ba28-4082-8a55-22cebea4b8d2.png)
 
 
 

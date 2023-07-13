@@ -20,25 +20,25 @@ import com.wincovid.repository.VaccinationCenterRepo;
 public class VaccinationCenterServicesImpl implements VaccinationCenterServices{
 	@Autowired
 	private VaccinationCenterRepo vaccinationCenterRepo;
-	
+
 	 @Autowired
 	 private CurrentUserSessionRepo currentUserSessionRepo;
-	 
+
 	@Override
 	public VaccinationCenter addVaccineCenter(String key, VaccinationCenter vaccinationCenter)throws VaccinationCenterException, LoginException {
 		CurrentUserSession loggedInUser = currentUserSessionRepo.findByUuid(key);
 		if(loggedInUser!=null) {
 		if(loggedInUser.getAdmin()==true) {
-		
-			
+
+
 			Optional<VaccinationCenter> vv = vaccinationCenterRepo.findById(vaccinationCenter.getVaccinationCentercode());
 			if(vv.isPresent()) {
 				throw new VaccinationCenterException("Vaccination center already present ");
 			}else {
 				return vaccinationCenterRepo.save(vaccinationCenter); 
 			}
-			
-			
+
+
 		}else{
 			throw new LoginException("Person logged in is not admin");
 		}
@@ -52,8 +52,8 @@ public class VaccinationCenterServicesImpl implements VaccinationCenterServices{
 		CurrentUserSession loggedInUser = currentUserSessionRepo.findByUuid(key);
 		if(loggedInUser!=null) {
 		if(loggedInUser.getAdmin()==true) {
-		
-			
+
+
 			Optional<VaccinationCenter> vv = vaccinationCenterRepo.findById(vaccinationCentercode);
 			if(vv.isEmpty()) {
 				throw new VaccinationCenterException("Vaccination center Not found  ");
@@ -63,7 +63,7 @@ public class VaccinationCenterServicesImpl implements VaccinationCenterServices{
 				vaccinationCenterRepo.save(toupdate);
 				return toupdate;
 			}
-			
+
 		}else{
 			throw new LoginException("Person logged in is not admin");
 		}
@@ -78,8 +78,8 @@ public class VaccinationCenterServicesImpl implements VaccinationCenterServices{
 		CurrentUserSession loggedInUser = currentUserSessionRepo.findByUuid(key);
 		if(loggedInUser!=null) {
 		if(loggedInUser.getAdmin()==true) {
-		
-			
+
+
 			Optional<VaccinationCenter> vv = vaccinationCenterRepo.findById(vaccinationCentercode);
 			if(vv.isEmpty()) {
 				throw new VaccinationCenterException("Vaccination center Not found  ");
@@ -88,7 +88,7 @@ public class VaccinationCenterServicesImpl implements VaccinationCenterServices{
 				vaccinationCenterRepo.delete(todelete);
 				return todelete;
 			}
-			
+
 		}else{
 			throw new LoginException("Person logged in is not admin");
 		}

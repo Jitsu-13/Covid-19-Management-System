@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.wincovid.dto.CurrentUserSession;
 import com.wincovid.dto.UsearDto;
+import com.wincovid.dto.VaccineRegistrationDto;
 import com.wincovid.exception.LoginException;
 import com.wincovid.exception.VaccineRegistrationException;
 import com.wincovid.module.Member;
@@ -30,12 +31,16 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 	
 	
 	@Override
-	public VaccineRegistration getVaccineRegistrationByMobileNo(String panoNo) throws VaccineRegistrationException {
-		VaccineRegistration vaccineRegistration = vaccineRegistrationRepo.findBymobileno(panoNo);
+	public VaccineRegistrationDto getVaccineRegistrationByMobileNo(String MobileNo) throws VaccineRegistrationException {
+		VaccineRegistration vaccineRegistration = vaccineRegistrationRepo.findBymobileno(MobileNo);
 		if(vaccineRegistration == null) {
-			throw new VaccineRegistrationException("No vaccine registration found with this mobile number - "+panoNo);
+			throw new VaccineRegistrationException("No vaccine registration found with this mobile number - "+MobileNo);
 		}else {
-			return vaccineRegistration;
+			VaccineRegistrationDto VrDto = new VaccineRegistrationDto();
+			  VrDto.setMobileno(vaccineRegistration.getMobileno());
+			  VrDto.setRegistrationId(vaccineRegistration.getRegistrationId());
+			  
+			  return VrDto;
 		}
 	}
 
