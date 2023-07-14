@@ -10,7 +10,7 @@
 > 
 > This project is developed by a team of 3 Back-End Developers in a span of 4 days during the construct week at [Masai School](https://masaischool.com/).
 >
->There are two type of users in this system : 
+>There are two type of users in this system :- 
 > 
 > a. Admin
 >
