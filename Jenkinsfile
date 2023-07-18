@@ -1,36 +1,37 @@
 pipeline {
     agent any
-
-    stages 
-    {
-        stage('Build') 
-        {
-            steps 
-            {
-                echo 'Build App'
+    
+    stages {
+        
+        stage('Build') {
+            steps {
+                // Build the Spring Boot project
+            
+                
+                // Or, if you have a specific Maven command, use:
+                sh 'mvn clean install'
             }
         }
-        stage('Test') 
-        {
-            steps 
-            {
-                echo 'Test App'
-            }
-        }
-        stage('Deploy') 
-        {
-            steps 
-            {
-                echo 'Deploy App'
+        
+        stage('Test') {
+            steps {
+                // Run tests for the Spring Boot project
+        
+                
+                // Or, if you have a specific Maven command, use:
+                sh 'mvn test'
             }
         }
     }
-    post
-    {
-        
-        always
-        {
-            emailext body: 'Summary', subject: 'Pipeline Status', to: 'sujity050@gmail.com'
+    
+    post {
+        always {
+            // Archive the build artifacts (e.g., JAR file)
+            archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+        }
+        success {
+            // Publish JUnit test results
+            junit 'build/reports/tests/**/*.xml'
         }
     }
 }
