@@ -11,6 +11,7 @@
 	<groupId>com.wincovid</groupId>
 	<artifactId>Win_covid</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Win_covid</name>
 	<description>This application will allow the citizen to register and schedule the vaccination session online in the Centres of their choice. </description>
 	<properties>
